@@ -7,12 +7,26 @@
 //
 
 #include <iostream>
+#include <cstdlib>
+#include "date.h"
+using namespace std;
 
-int main(int argc, const char * argv[])
+int main()
 {
-
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+	date d(1, 1, 2012);
+    
+	cout << "How many days forward from ";
+	d.print();
+	cout << " do you want to go? ";
+    
+	int count;   //uninitialized variable
+	cin >> count;
+    
+	d.next(count);
+	cout << "The new date is ";
+	d.print();
+	cout << ".\n";
+    
+	return EXIT_SUCCESS;
 }
 
