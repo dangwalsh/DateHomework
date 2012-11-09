@@ -50,7 +50,14 @@ void date::next(int count)
 {
 	//Call the other next count times.
 	while (--count >= 0) {
-		next();
+        //Move to the next date.
+        if (++day > date_length[month]) {
+            day = 1;
+            if (++month > 12) {
+                month = 1;
+                ++year;
+            }
+        }
 	}
     day = julian();
     month = 1;
@@ -58,14 +65,7 @@ void date::next(int count)
 
 void date::next()
 {
-	//Move to the next date.
-	if (++day > date_length[month]) {
-		day = 1;
-		if (++month > 12) {
-			month = 1;
-			++year;
-		}
-	}
+
 }
 
 int const date::julian()
