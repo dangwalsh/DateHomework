@@ -17,7 +17,7 @@ class date {
 	int day;                 //1 to date_length[month] inclusive
 public:
 	date(int initial_month, int initial_day, int initial_year);
-	void next(int count);    //Go count days forward.
+	void next(int count = 1);    //Go count days forward.
 	void next();             //Go one day forward.
 	void print() const {cout << month << "/" << day << "/" << year;}
     int const julian();

@@ -63,11 +63,6 @@ void date::next(int count)
     month = 1;
 }
 
-void date::next()
-{
-
-}
-
 int const date::julian()
 {
     int d = 0;
