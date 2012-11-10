@@ -48,19 +48,22 @@ date::date(int initial_month, int initial_day, int initial_year)
 
 void date::next(int count)
 {
-	//Call the other next count times.
-	while (--count >= 0) {
-        //Move to the next date.
-        if (++day > date_length[month]) {
-            day = 1;
-            if (++month > 12) {
-                month = 1;
-                ++year;
-            }
-        }
-	}
-    day = julian();
-    month = 1;
+    const div_t d = div(count, 365);
+    
+    if (d.rem < 0) {
+        year += d.quot - 1;
+        count = d.rem + 365;
+    } else {
+        year += d.quot;
+        count = d.rem;
+    }
+    
+    while (count >= date_length[month]) {
+        count -= date_length[month];
+        ++month;
+    }
+    day += count;
+    //day = julian();
 }
 
 int const date::julian()
